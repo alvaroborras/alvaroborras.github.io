@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Álvaro Borrás, applied mathematician in Madrid. AI, machine learning, scientific computing, and practical software.">
+  <meta name="theme-color" content="#0f0e0c">
+  <meta property="og:title" content="Álvaro Borrás">
+  <meta property="og:description" content="Applied mathematics. AI. Practical software.">
+  <meta property="og:type" content="website">
+  <title>Álvaro Borrás</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top">
+    <div class="wrap top-inner">
+      <a class="brand" href="#main">ÁLVARO BORRÁS <span class="muted">~/home</span></a>
+      <nav aria-label="Main navigation"><a href="#projects">~/projects</a><a href="#path">~/path</a><a href="#now">~/now</a><a href="#contact">~/contact</a></nav>
+      <button id="theme" type="button" aria-label="Use light theme" aria-pressed="false" hidden>◐ <span>theme</span></button>
+    </div>
+  </header>
+  <main id="main">
+    <section class="hero" aria-labelledby="name">
+      <div class="wrap">
+        <h1 id="name">Álvaro Borrás</h1>
+        <p class="tagline">applied mathematics, <em>practical software</em></p>
+        <div class="hero-row">
+          <div class="hero-copy">
+            <div class="lede-row"><img class="portrait" src="assets/avatar.jpg" alt="Álvaro Borrás's GitHub avatar" width="96" height="96"><p class="lede">Applied mathematician based in Madrid. I build useful things at the intersection of AI, ML, and scientific computing.</p></div>
+            <div class="links"><a href="mailto:alvaroborrasf@gmail.com">↗ email</a><a href="https://github.com/alvaroborras">↗ github</a><a href="#projects">↓ selected work</a></div>
+          </div>
+          <div class="computer" aria-label="Retro computer displaying Álvaro's profile" role="img">
+            <div class="monitor"><div class="screen"><span class="muted">alvaro@localhost:~$</span><br><br><span class="muted">&gt; whoami</span><br>álvaro borrás<br><br><span class="muted">&gt; interests</span><br><span class="accent">math · ai · computing</span><br><br><span class="muted">&gt; status</span><br>turning ideas into code<span class="cursor"></span></div><div class="monitor-bottom"><span>AB / PERSONAL COMPUTER</span><i></i></div></div>
+            <div class="stand"></div><div class="keyboard"></div><div class="mouse"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="about" class="sec" aria-labelledby="about-title">
+      <div class="wrap split"><div class="section-label"><h2 id="about-title">~/about</h2><span>readme.md</span></div><div>
+        <p class="about-lead">I'm an applied mathematician. I enjoy turning ideas into practical software.</p>
+        <p class="about-body">My interests are AI systems and self-improving agents, data-driven modelling and optimization, HPC, and numerical computing. Based in Madrid, Spain.</p>
+        <details class="more"><summary>More about me</summary><ul><li>I work at the intersection of applied mathematics, AI, ML, and scientific computing.</li><li>My public projects include machine learning competitions, tools for coding agents, and numerical algorithms.</li><li>I'm interested in conversations about applied mathematics, AI, and data-driven problem solving.</li></ul></details>
+      </div></div>
+    </section>
+    <figure class="train" aria-label="Illustration of a passenger train">
+      <svg viewBox="0 0 1440 120" fill="none" aria-hidden="true"><defs><pattern id="carriage" width="420" height="100" patternUnits="userSpaceOnUse"><rect x="3" y="8" width="414" height="80" rx="20" fill="#e6decb"/><rect x="15" y="15" width="390" height="65" rx="15" stroke="#b9af9b"/><path d="M12 64h396" stroke="#b9af9b"/><g fill="#26231e"><rect x="36" y="24" width="96" height="29" rx="14"/><rect x="148" y="24" width="96" height="29" rx="14"/><rect x="260" y="24" width="96" height="29" rx="14"/></g><path d="M374 12v72M382 12v72" stroke="#b9af9b"/><circle cx="80" cy="91" r="8" fill="#26231e"/><circle cx="330" cy="91" r="8" fill="#26231e"/></pattern></defs><path d="M0 3h1440M0 108h1440" stroke="#2c2925"/><rect y="5" width="1440" height="100" fill="url(#carriage)"/></svg>
+      <figcaption class="wrap"><span>in_transit.svg</span><span>Madrid → mathematics → practical software</span></figcaption>
+    </figure>
+    <section id="projects" class="sec" aria-labelledby="projects-title">
+      <div class="wrap">
+        <div class="project-heading"><div><p class="dir">~/projects</p><h2 id="projects-title" class="display">Things I've built</h2></div><span class="mono muted">6 selected projects</span></div>
+        <div class="filters" id="filters" hidden aria-label="Filter projects"><button type="button" data-filter="all" aria-pressed="true">All</button><button type="button" data-filter="ml" aria-pressed="false">Machine learning</button><button type="button" data-filter="tools" aria-pressed="false">Developer tools</button><button type="button" data-filter="math" aria-pressed="false">Mathematics</button><span id="project-count" role="status">showing 6 of 6</span></div>
+        <div class="grid">
+          <article class="card" data-category="ml"><div class="card-top"><span>~/projects/schneider-electric</span><span>competition · 2025</span></div><div><h3>Pollution prediction</h3><p>My winning solution for the NUWE Schneider Electric Hackathon 2025, Data Science track.</p></div><div class="results"><p><strong>Winning solution</strong> in the Data Science track</p><p>Implementation and a report on the competition</p></div><div class="tags"><span>Machine learning</span><span>Data science</span><span>Python</span></div><div class="card-foot"><a href="https://github.com/alvaroborras/Schneider-Electric-pollution">↗ source & writeup</a><span class="accent">competition</span></div></article>
+          <article class="card" data-category="ml"><div class="card-top"><span>~/projects/der-anomalies</span><span>kaggle · python</span></div><div><h3>Anomaly detection</h3><p>Detecting anomalous or compromised operating states in Distributed Energy Resource systems.</p></div><div class="results"><p><strong>2.36M training rows</strong> of simulator telemetry</p><p>Family-specific models and thresholds tuned for F2</p><p>Reproducible pipeline with a pinned Docker environment</p></div><div class="tags"><span>Anomaly detection</span><span>Feature engineering</span><span>Energy</span></div><div class="card-foot"><a href="https://github.com/alvaroborras/Anomaly-Detection-DER-Systems">↗ source & writeup</a><span class="accent">public</span></div></article>
+          <article class="card" data-category="tools"><div class="card-top"><span>~/projects/buglens</span><span>developer tools · 2026</span></div><div><h3>buglens</h3><p>Agent-first Python debugging dossiers from failing tests.</p></div><div class="results"><p>Turns pytest failures into <strong>structured debugging context</strong></p><p>Source snippets, reproduction commands, and environment metadata</p><p>MCP server for coding-agent integration</p></div><div class="tags"><span>Python</span><span>AI agents</span><span>Debugging</span></div><div class="card-foot"><a href="https://github.com/alvaroborras/buglens">↗ view repository</a><span class="accent">open source</span></div></article>
+          <article class="card" data-category="math"><div class="card-top"><span>~/projects/inverse-langevin</span><span>numerical computing · 2019</span></div><div><h3>Inverse Langevin</h3><p>Efficient numerical computation of the inverse Langevin function.</p></div><div class="results"><p>Implementation of a <strong>high-accuracy numerical procedure</strong></p><p>Based on the method proposed by Benítez and Montáns</p></div><div class="tags"><span>Applied mathematics</span><span>Numerical methods</span><span>Python</span></div><div class="card-foot"><a href="https://github.com/alvaroborras/inverse-langevin">↗ view repository</a><span class="accent">open source</span></div></article>
+        </div>
+        <div class="project-list"><p class="dir">ls ~/projects</p><a class="project-row" data-category="tools" href="https://github.com/alvaroborras/cp-lib"><span class="project-name">cp-lib</span><span>Competitive programming library, snippets, and problem solutions.</span><span class="mono">C++ ↗</span></a><a class="project-row" data-category="ml" href="https://github.com/alvaroborras/kaggle-template"><span class="project-name">Kaggle template</span><span>A template for machine learning competitions.</span><span class="mono">Python ↗</span></a></div>
+      </div>
+    </section>
+    <section id="path" class="sec" aria-labelledby="path-title"><div class="wrap split"><div class="section-label"><h2 id="path-title">~/path</h2><span>selected milestones</span></div><div><div class="path-row"><span class="accent mono">2026</span><div>buglens <span class="muted">· Python debugging tools for coding agents</span></div></div><div class="path-row"><span class="mono muted">2025</span><div>NUWE Schneider Electric Hackathon <span class="muted">· Winning Data Science solution</span></div></div><div class="path-row"><span class="mono muted">2019</span><div>Inverse Langevin function <span class="muted">· Numerical computing</span></div></div><p class="dir path-note">ls ~/path/interests</p><div class="interest-list"><span>Applied mathematics</span><span>AI & machine learning</span><span>Optimization</span><span>Scientific computing</span></div></div></div></section>
+    <section id="now" class="sec" aria-labelledby="now-title"><div class="wrap twin"><div class="panel"><div class="panel-heading"><h2 id="now-title" class="dir">~/now</h2><span class="mono muted">current interests</span></div><ul class="now-list"><li>AI systems and self-improving agents.</li><li>Data-driven modelling and optimization.</li><li>HPC and numerical computing.</li><li>Turning ideas into practical software.</li></ul></div><div class="panel"><div class="panel-heading"><h2 class="dir">~/off-the-clock</h2><span class="mono muted">around the code</span></div><dl class="kv"><div><dt>home</dt><dd>Madrid, Spain</dd></div><div><dt>puzzles</dt><dd>Competitive programming</dd></div><div><dt>learning</dt><dd>Mathematics & algorithms</dd></div><div><dt>sharing</dt><dd>Open-source projects</dd></div></dl></div></div></section>
+    <section id="content" class="sec" aria-labelledby="content-title"><div class="wrap split"><div class="section-label"><h2 id="content-title">~/content</h2><span>notes & source code</span></div><div><p class="about-lead">Code, experiments, and the writeups behind them.</p><a class="social" href="https://github.com/alvaroborras">↗ github / alvaroborras</a><div class="writing"><a href="https://github.com/alvaroborras/Schneider-Electric-pollution/blob/main/report.md">Schneider Electric competition report <span>read ↗</span></a><a href="https://github.com/alvaroborras/Anomaly-Detection-DER-Systems/blob/main/docs/writeup.md">DER anomaly detection solution <span>read ↗</span></a><a href="https://github.com/alvaroborras/buglens#readme">Debugging with buglens <span>read ↗</span></a></div></div></div></section>
+    <section id="contact" class="sec contact" aria-labelledby="contact-title"><div class="wrap"><p class="dir">~/contact</p><h2 id="contact-title">Write to me.</h2><div class="mail"><a href="mailto:alvaroborrasf@gmail.com">alvaroborrasf@gmail.com</a><a class="mono" href="https://github.com/alvaroborras">↗ github</a></div><div class="battle">A new conversation appeared!<br>ÁLVARO used APPLIED MATHEMATICS!<br>Let's talk about AI, mathematics, or a useful problem.</div></div></section>
+  </main>
+  <footer><div class="wrap"><span>© 2026 Álvaro Borrás</span><span>Madrid, Spain · plain HTML & CSS</span><a href="#main">back to top ↑</a></div></footer>
+</body>
+</html>
