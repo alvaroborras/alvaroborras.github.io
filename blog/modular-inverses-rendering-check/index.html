@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="An original blog rendering check with modular arithmetic, native MathML equations, and runnable Python code.">
+  <meta name="theme-color" content="#141e1a">
+  <meta property="og:title" content="Modular inverses: a rendering check | Álvaro Borrás">
+  <meta property="og:description" content="Equations and runnable Python in a first example blog entry.">
+  <meta property="og:type" content="article">
+  <title>Modular inverses: a rendering check | Álvaro Borrás</title>
+  <link rel="icon" href="../../favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="../../style.css">
+  <script src="../../script.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="top"><div class="wrap top-inner"><a class="brand" href="../../">ÁLVARO BORRÁS <span class="muted">~/blog</span></a><nav aria-label="Main navigation"><a href="../../#projects">~/projects</a><a href="../../#blog">~/blog</a><a href="../../#contact">~/contact</a></nav><button id="theme" type="button" aria-label="Use light theme" aria-pressed="false" hidden>◐ <span>theme</span></button></div></header>
+  <main id="main" class="post wrap">
+    <article aria-labelledby="post-title">
+      <header class="post-heading"><a class="dir muted" href="../../#blog">← ~/blog</a><h1 id="post-title">Modular inverses: a rendering check</h1><p class="mono muted">Álvaro Borrás · <time datetime="2026-10-04">October 4, 2026</time> · example entry</p></header>
+      <div class="post-body">
+        <aside class="post-note">This is an original rendering test, not a reproduction of purplesyringa's article. The reference post, <a href="https://purplesyringa.moe/blog/faster-practical-modular-inversion/">Faster practical modular inversion</a>, remains on the author's site.</aside>
+        <p>This entry checks inline equations, display equations, fractions, subscripts, and code blocks. It uses modular arithmetic as a small example.</p>
+        <h2>A small inverse</h2>
+        <p>A modular inverse of <math aria-label="a"><mi>a</mi></math> modulo <math aria-label="m"><mi>m</mi></math> is an integer <math aria-label="x"><mi>x</mi></math> satisfying:</p>
+        <div class="equation"><math display="block" aria-label="a times x is congruent to 1 modulo m"><mrow><mi>a</mi><mo>⋅</mo><mi>x</mi><mo>≡</mo><mn>1</mn><mspace width="1em"/><mo>(</mo><mi mathvariant="normal">mod</mi><mspace width="0.3em"/><mi>m</mi><mo>)</mo></mrow></math></div>
+        <p>For example, <math aria-label="3 times 4 equals 12"><mn>3</mn><mo>⋅</mo><mn>4</mn><mo>=</mo><mn>12</mn></math>. Dividing 12 by 11 leaves remainder 1, so 4 is an inverse of 3 modulo 11.</p>
+        <div class="equation"><math display="block" aria-label="3 to the power negative 1 is congruent to 4 modulo 11"><mrow><msup><mn>3</mn><mrow><mo>−</mo><mn>1</mn></mrow></msup><mo>≡</mo><mn>4</mn><mspace width="1em"/><mo>(</mo><mi mathvariant="normal">mod</mi><mspace width="0.3em"/><mn>11</mn><mo>)</mo></mrow></math></div>
+        <h2>When does it exist?</h2>
+        <p>An inverse exists precisely when the number and modulus are coprime. Bézout's identity gives integers <math aria-label="x and y"><mi>x</mi><mo>,</mo><mi>y</mi></math> such that:</p>
+        <div class="equation"><math display="block" aria-label="a subscript 0 times x plus m subscript 0 times y equals the greatest common divisor of a subscript 0 and m subscript 0"><mrow><msub><mi>a</mi><mn>0</mn></msub><mi>x</mi><mo>+</mo><msub><mi>m</mi><mn>0</mn></msub><mi>y</mi><mo>=</mo><mi mathvariant="normal">gcd</mi><mo>(</mo><msub><mi>a</mi><mn>0</mn></msub><mo>,</mo><msub><mi>m</mi><mn>0</mn></msub><mo>)</mo></mrow></math></div>
+        <p>If the greatest common divisor is 1, reducing this identity modulo the modulus gives the inverse. Rearranging also gives a fraction with an integer value:</p>
+        <div class="equation"><math display="block" aria-label="y equals the fraction 1 minus a subscript 0 times x divided by m subscript 0"><mrow><mi>y</mi><mo>=</mo><mfrac><mrow><mn>1</mn><mo>−</mo><msub><mi>a</mi><mn>0</mn></msub><mi>x</mi></mrow><msub><mi>m</mi><mn>0</mn></msub></mfrac></mrow></math></div>
+        <h2>Runnable Python</h2>
+        <p>Python 3.8 and newer support modular inversion directly with <code>pow(a, -1, modulus)</code>. No custom algorithm is needed for this example. Copy the block into a Python file and run it:</p>
+        <figure class="code-block"><figcaption>example.py · Python 3.8+</figcaption><pre tabindex="0" aria-label="Python modular inverse example"><code data-language="python"><span class="code-comment"># An inverse exists: 3 * 4 has remainder 1 modulo 11.</span>
+modulus = <span class="code-number">11</span>
+a = <span class="code-number">3</span>
+inverse = <span class="code-function">pow</span>(a, -<span class="code-number">1</span>, modulus)
+<span class="code-keyword">assert</span> inverse == <span class="code-number">4</span>
+<span class="code-keyword">assert</span> (a * inverse) % modulus == <span class="code-number">1</span>
+<span class="code-function">print</span>(inverse)
+
+<span class="code-comment"># A non-coprime pair has no inverse.</span>
+<span class="code-keyword">try</span>:
+    <span class="code-function">pow</span>(<span class="code-number">6</span>, -<span class="code-number">1</span>, <span class="code-number">9</span>)
+<span class="code-keyword">except</span> ValueError:
+    <span class="code-function">print</span>(<span class="code-string">"No inverse for 6 modulo 9"</span>)
+<span class="code-keyword">else</span>:
+    <span class="code-keyword">raise</span> AssertionError(<span class="code-string">"Expected a non-invertible pair"</span>)</code></pre></figure>
+        <p>Expected output:</p>
+        <pre class="output" tabindex="0" aria-label="Expected program output"><code>4
+No inverse for 6 modulo 9</code></pre>
+        <h2>Further reading</h2>
+        <p><a href="https://purplesyringa.moe/blog/faster-practical-modular-inversion/">Faster practical modular inversion</a> by purplesyringa discusses performance-oriented inversion algorithms. For the built-in function used here, see <a href="https://docs.python.org/3/library/functions.html#pow">Python's documentation for <code>pow</code></a>.</p>
+        <p class="muted">Equations on this page use native MathML. Code is HTML text with lightweight syntax coloring. Both work without JavaScript or a third-party rendering service.</p>
+      </div>
+    </article>
+    <a class="post-back dir" href="../../#blog">← All blog entries</a>
+  </main>
+  <footer><div class="wrap"><span>© 2026 Álvaro Borrás</span><span>Madrid, Spain · plain HTML & CSS</span><a href="#main">back to top ↑</a></div></footer>
+</body>
+</html>

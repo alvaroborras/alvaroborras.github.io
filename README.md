@@ -16,6 +16,14 @@ node test.mjs
 
 GitHub Pages publishes the repository's `main` branch at `/`. Push edits to publish them.
 
+## Blog entries
+
+The homepage's Blog section links to entries under `blog/<slug>/index.html`. To add an entry, copy the example page, change its title, date, description, and article, then add a link in the homepage's `#blog` section. Shared styles and the theme toggle work on article pages too.
+
+Use native MathML for inline and display equations, and `<pre><code>` for selectable code. The example includes superscripts, subscripts, fractions, and a runnable Python snippet. `node test.mjs` checks the links and executes that snippet with Python 3.8 or newer.
+
+The requested reference article is linked, not reproduced. Its repository explicitly reserves rights to blog text and code snippets, despite licensing the site's implementation under MIT: https://github.com/purplesyringa/site#readme. The included rendering-check entry is original text and code.
+
 ## Content sources
 
 Only public information was used:

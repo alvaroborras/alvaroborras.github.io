@@ -1,6 +1,8 @@
 import assert from 'node:assert/strict';
 import { readFileSync, existsSync } from 'node:fs';
 import { runInNewContext } from 'node:vm';
+import { spawnSync } from 'node:child_process';
+import { resolve } from 'node:path';
 
 const html = readFileSync('index.html', 'utf8');
 const element = (dataset = {}) => ({
@@ -48,4 +50,22 @@ assert.equal(projects.length, 4);
 assert.ok(html.includes('4 selected projects'));
 assert.ok(html.includes('showing 4 of 4'));
 assert.ok(buttons.every(b => projects.some(p => b.dataset.filter === 'all' || p.dataset.category === b.dataset.filter)), 'Empty filter category');
-console.log('Passed: theme, all project filters, local assets, anchors, and author replacement.');
+const postPath = 'blog/modular-inverses-rendering-check';
+const post = readFileSync(`${postPath}/index.html`, 'utf8');
+for (const [, path] of post.matchAll(/(?:src|href)="([^"#:]+)"/g)) {
+  if (!path.includes(':')) assert.ok(existsSync(resolve(postPath, path.split('#')[0])), `Missing post asset: ${path}`);
+}
+assert.ok(post.includes('<mfrac>') && post.includes('<msub>') && post.includes('<msup>'), 'Missing math examples');
+const example = post.match(/<code data-language="python">([\s\S]*?)<\/code>/)[1].replace(/<[^>]*>/g, '');
+const result = spawnSync('python3', ['-c', example], { encoding: 'utf8' });
+assert.equal(result.status, 0, result.stderr);
+assert.equal(result.stdout.trim(), '4\nNo inverse for 6 modulo 9');
+const postTheme = element();
+runInNewContext(readFileSync('script.js', 'utf8'), { document: {
+  documentElement: root,
+  querySelector: selector => selector === '#theme' ? postTheme : null,
+  querySelectorAll: () => [],
+} });
+postTheme.click();
+assert.equal(root.dataset.theme, 'light');
+console.log('Passed: themes on both pages, filters, assets, anchors, math markup, and executable blog code.');
