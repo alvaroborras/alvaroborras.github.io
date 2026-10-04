@@ -34,7 +34,7 @@ for (const button of buttons) {
   filters.click({ target: { closest: () => button } });
   const expected = projects.filter(p => button.dataset.filter === 'all' || p.dataset.category === button.dataset.filter);
   assert.deepEqual(projects.filter(p => !p.hidden), expected);
-  assert.equal(count.textContent, `showing ${expected.length} of 6`);
+  assert.equal(count.textContent, `showing ${expected.length} of ${projects.length}`);
   assert.equal(button.attributes['aria-pressed'], 'true');
   assert.equal(buttons.filter(b => b.attributes['aria-pressed'] === 'true').length, 1);
 }
@@ -43,4 +43,9 @@ for (const [, path] of html.matchAll(/(?:src|href)="([^"#:]+)"/g)) {
 }
 for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) assert.ok(html.includes(`id="${id}"`), `Missing anchor: ${id}`);
 assert.ok(!/adolfo|viguera/i.test(html), 'Reference author left in page');
+assert.ok(!/buglens|langevin/i.test(html), 'Removed project left in page');
+assert.equal(projects.length, 4);
+assert.ok(html.includes('4 selected projects'));
+assert.ok(html.includes('showing 4 of 4'));
+assert.ok(buttons.every(b => projects.some(p => b.dataset.filter === 'all' || p.dataset.category === b.dataset.filter)), 'Empty filter category');
 console.log('Passed: theme, all project filters, local assets, anchors, and author replacement.');

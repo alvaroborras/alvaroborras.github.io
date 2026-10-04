@@ -2,7 +2,7 @@
 
 Live site: https://alvaroborras.github.io/
 
-A static personal site with the dark palette, serif typography, terminal-style labels, project grid, train motif, and retro computer format requested from https://adolfoviguera.com/. The markup, CSS, and illustrations were written for this site. No framework, build step, paid server, tracking, or external runtime requests.
+A static personal site with serif typography, terminal-style labels, project grid, train motif, and retro computer format requested from https://adolfoviguera.com/. The dark and light palettes use pond green, parchment, and koi red-orange from the profile image. The markup, CSS, and illustrations were written for this site. No framework, build step, paid server, tracking, or external runtime requests.
 
 ## Edit and preview
 
