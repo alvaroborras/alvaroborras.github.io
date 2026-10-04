@@ -49,6 +49,8 @@ assert.ok(!/buglens|langevin/i.test(html), 'Removed project left in page');
 assert.equal(projects.length, 4);
 assert.ok(html.includes('4 selected projects'));
 assert.ok(html.includes('showing 4 of 4'));
+assert.ok(html.includes("Let's connect :)"));
+assert.ok(!html.includes('class="battle"'), 'Removed contact message remains');
 assert.ok(buttons.every(b => projects.some(p => b.dataset.filter === 'all' || p.dataset.category === b.dataset.filter)), 'Empty filter category');
 const postPath = 'blog/modular-inverses-rendering-check';
 const post = readFileSync(`${postPath}/index.html`, 'utf8');
@@ -61,11 +63,22 @@ const result = spawnSync('python3', ['-c', example], { encoding: 'utf8' });
 assert.equal(result.status, 0, result.stderr);
 assert.equal(result.stdout.trim(), '4\nNo inverse for 6 modulo 9');
 const postTheme = element();
-runInNewContext(readFileSync('script.js', 'utf8'), { document: {
+const postDocument = {
   documentElement: root,
   querySelector: selector => selector === '#theme' ? postTheme : null,
   querySelectorAll: () => [],
-} });
+};
+runInNewContext(readFileSync('script.js', 'utf8'), { document: postDocument });
 postTheme.click();
 assert.equal(root.dataset.theme, 'light');
-console.log('Passed: themes on both pages, filters, assets, anchors, math markup, and executable blog code.');
+for (const saved of ['light', 'dark', 'invalid']) {
+  let stored = saved;
+  const localStorage = { getItem: () => stored, setItem: (key, value) => { stored = value; } };
+  runInNewContext(readFileSync('script.js', 'utf8'), { document: postDocument, localStorage });
+  const initial = saved === 'light' ? 'light' : 'dark';
+  assert.equal(root.dataset.theme, initial);
+  postTheme.click();
+  assert.equal(stored, initial === 'light' ? 'dark' : 'light');
+  assert.equal(postTheme.textContent, `◐ ${stored === 'light' ? 'Dark' : 'Light'} theme`);
+}
+console.log('Passed: persistent themes, storage fallback, contact heading, filters, assets, math, and executable blog code.');

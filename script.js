@@ -1,10 +1,18 @@
 const theme = document.querySelector('#theme');
-theme.hidden = false;
-theme.addEventListener('click', () => {
-  const light = document.documentElement.dataset.theme !== 'light';
+function setTheme(value) {
+  const light = value === 'light';
   document.documentElement.dataset.theme = light ? 'light' : 'dark';
   theme.setAttribute('aria-pressed', String(light));
   theme.setAttribute('aria-label', `Use ${light ? 'dark' : 'light'} theme`);
+  theme.textContent = `◐ ${light ? 'Dark' : 'Light'} theme`;
+}
+try { setTheme(localStorage.getItem('theme')); }
+catch { setTheme('dark'); }
+theme.hidden = false;
+theme.addEventListener('click', () => {
+  setTheme(document.documentElement.dataset.theme === 'light' ? 'dark' : 'light');
+  try { localStorage.setItem('theme', document.documentElement.dataset.theme); }
+  catch { /* Theme switching still works when browser storage is unavailable. */ }
 });
 
 const filters = document.querySelector('#filters');
